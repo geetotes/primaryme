@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Coffee Sinatra Boilerplate
 
 Simple boilerplate app to start a new backbone project utilizing coffeescript, Sinatra,
@@ -26,3 +27,6 @@ Rename `AppName` to your application name in the files listed below:
 * In `app/app.coffee` on lines 1 and 4
 * In `app/js/app/routers.coffee` on lines 2 and 7
 * In `app/js/app/views.coffee` on line 2
+=======
+primaryme
+=========
