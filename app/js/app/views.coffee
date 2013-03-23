@@ -25,8 +25,8 @@ $ ->
             console.log('model added')
       #@collection.fetch()
     addOne: (model) ->
-      view = new AppName.MemberView model
-      $(@el).append(view)
+      view = new AppName.MemberView( {model: model} )
+      $("#members").append(view.render().el)
     addAll: ->
       AppName.Members.each(@addOne)
     render: ->
@@ -38,8 +38,7 @@ $ ->
     collection: AppName.Members
 
   class AppName.MemberView extends Backbone.View
-    model: AppName.Member
-    template: JST['template/member']
+    template: JST['templates/member']
     render: ->
-      $(@el).html(@template)
+      $(@el).html(@template(@model.toJSON()))
       @
