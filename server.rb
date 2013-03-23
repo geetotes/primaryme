@@ -19,8 +19,8 @@ class AppServer < Sinatra::Base
 
     my_js = [
       '/js/vendor/jquery.js',
-      '/js/vendor/underscore.js',
-      '/js/vendor/big-backbone.js',
+      '/js/vendor/underscore-dev.js',
+      '/js/vendor/backbone-dev.js',
       '/js/vendor/bootstrap.min.js',
       '/jst.js'
     ]

@@ -4,9 +4,9 @@ $ ->
     collection: new AppName.Members
     initialize: ->
       collectionHold = []
-      @bind(@collection, 'add', @addOne);
-      @bind(@collection, 'reset', @addAll);
-      @bind(@collection, 'all', @render);
+      @collection.bind('add', @addOne)
+      @collection.bind('reset', @addAll)
+      @collection.bind( 'all', @render)
       $.ajax
         collection: @collection
         dataType: 'json'
@@ -14,7 +14,7 @@ $ ->
         success: (data, textStatus, jqXHR) ->
           collection = @collection
           for member in data.results[0].members
-            model =  
+            model =
                 state : member.state
                 first_name : member.first_name
                 middle_name : member.middle_name
