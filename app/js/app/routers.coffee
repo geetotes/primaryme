@@ -4,5 +4,5 @@ $ ->
       ".*": "main"
 
     main: ->
-      @titleView ||= new AppName.TitleView el: $('#wrap')[0]
+      @titleView ||= new AppName.TitleView el: $('#app')[0]
       @titleView.render()

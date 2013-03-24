@@ -3,8 +3,9 @@ $ ->
     template: JST['templates/title']
     collection: new AppName.Members
     events:
-      "keypress #search": "search",
-      "click #app": "eventTest"
+      "keypress #search"      : "search",
+      "click #app"            : "eventTest",
+      "keypress .search-query": "search"
     initialize: =>
       collectionHold = []
       @collection.bind('add', @addOne)
@@ -35,14 +36,16 @@ $ ->
       console.log('models added')
     eventTest: =>
       console.log('this is a test')
-    search: ->
-      string = $('#search').val()
+    search: =>
+      console.log('search handler call')
+      match = $('#search').val()
       $('.member').each ->
-        if $(@).css('display') != 'none' and this.id.contains(string) == false
+        string = $(@).children('h4').first().text()
+        if $(@).css('display') != 'none' and string.indexOf(match) != -1
           $(@).hide()
     render: =>
-      $('#app').html(@template)
-      @delegateEvents()
+      @$el.html(@template)
+      @delegateEvents(@events)
       @
 
   class AppName.MembersView extends Backbone.View
