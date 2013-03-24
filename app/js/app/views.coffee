@@ -1,5 +1,7 @@
 $ ->
   class AppName.TitleView extends Backbone.View
+    el_tag = "#app"
+    el:$(el_tag)
     template: JST['templates/title']
     collection: new AppName.Members
     initialize: ->
@@ -30,7 +32,7 @@ $ ->
     addAll: ->
       AppName.Members.each(@addOne)
     render: ->
-      $(@el).html(@template)
+      $('#app').html(@template)
       @
 
   class AppName.MembersView extends Backbone.View
