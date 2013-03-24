@@ -52,7 +52,8 @@ $ ->
           console.log('key' + match)
     render: =>
       @$el.html(@template)
-      @delegateEvents(@events)
+      mapView = new AppName.MapView
+      mapView.render()
       @
 
   class AppName.MembersView extends Backbone.View
@@ -64,3 +65,21 @@ $ ->
     render: ->
       $(@el).html(@template(@model.toJSON()))
       @
+
+
+  class AppName.MapView extends Backbone.View
+    render: ->
+      R = Raphael('map', 1000, 900)
+      attr =
+        "fill": "#d3d3d3",
+        "stroke": "#fff",
+        "stroke-opacity": "1",
+        "stroke-linejoin": "round",
+        "stroke-miterlimit": "4",
+        "stroke-width": "0.75",
+        "stroke-dasharray": "none"
+      usRaphael = {}
+
+      for state of usMap
+        usRaphael[state] = R.path(usMap[state]).attr(attr)
+

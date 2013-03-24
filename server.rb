@@ -22,6 +22,8 @@ class AppServer < Sinatra::Base
       '/js/vendor/underscore-dev.js',
       '/js/vendor/backbone-dev.js',
       '/js/vendor/bootstrap.min.js',
+      '/js/vendor/raphael.js',
+      '/js/vendor/us-map-svg.js',
       '/jst.js'
     ]
 
