@@ -6,3 +6,11 @@
   text-align: center;
 }
 
+.visible{
+  display:block;
+}
+
+.hidden{
+  display:none;
+}
+

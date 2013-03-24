@@ -3,9 +3,8 @@ $ ->
     template: JST['templates/title']
     collection: new AppName.Members
     events:
-      "keypress #search"      : "search",
-      "click #app"            : "eventTest",
-      "keypress .search-query": "search"
+      "keyup #search"      : "search",
+      "click #app"            : "eventTest"
     initialize: =>
       collectionHold = []
       @collection.bind('add', @addOne)
@@ -39,10 +38,18 @@ $ ->
     search: =>
       console.log('search handler call')
       match = $('#search').val()
+      #need to ignore a-z keys
       $('.member').each ->
         string = $(@).children('h4').first().text()
-        if $(@).css('display') != 'none' and string.indexOf(match) != -1
-          $(@).hide()
+        #should switch the above to native javascript function, not jquery
+        if $(@).hasClass('visible') and string.indexOf(match) == -1
+          $(@).addClass('hidden')
+          $(@).removeClass('visible')
+        else
+          #now need to split the string again to make a better match
+          $(@).addClass('visible')
+          $(@).removeClass('hidden')
+          console.log('key' + match)
     render: =>
       @$el.html(@template)
       @delegateEvents(@events)
