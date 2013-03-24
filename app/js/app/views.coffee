@@ -1,14 +1,15 @@
 $ ->
   class AppName.TitleView extends Backbone.View
-    el_tag = "#app"
-    el:$(el_tag)
     template: JST['templates/title']
     collection: new AppName.Members
-    initialize: ->
+    events:
+      "keypress #search": "search",
+      "click #app": "eventTest"
+    initialize: =>
       collectionHold = []
       @collection.bind('add', @addOne)
       @collection.bind('reset', @addAll)
-      @collection.bind( 'all', @render)
+      #@collection.bind( 'all', @render)
       $.ajax
         collection: @collection
         dataType: 'json'
@@ -29,10 +30,19 @@ $ ->
     addOne: (model) ->
       view = new AppName.MemberView( {model: model} )
       $("#members").append(view.render().el)
-    addAll: ->
+    addAll: =>
       AppName.Members.each(@addOne)
-    render: ->
+      console.log('models added')
+    eventTest: =>
+      console.log('this is a test')
+    search: ->
+      string = $('#search').val()
+      $('.member').each ->
+        if $(@).css('display') != 'none' and this.id.contains(string) == false
+          $(@).hide()
+    render: =>
       $('#app').html(@template)
+      @delegateEvents()
       @
 
   class AppName.MembersView extends Backbone.View
